@@ -60,35 +60,35 @@
       button Button
       a.chip Chip
       i home
-      img.circle(:src="'/beer-and-woman.jpg'")
+      img.circle(:src="'/beer-and-woman.svg'")
     .small-divider
     nav
       button Button
       a.chip Chip
       i home
       .max max
-      img.circle(:src="'/beer-and-woman.jpg'")
+      img.circle(:src="'/beer-and-woman.svg'")
     .small-divider
     nav
       button Button
       a.chip Chip
       .max max
       i home
-      img.circle(:src="'/beer-and-woman.jpg'")
+      img.circle(:src="'/beer-and-woman.svg'")
     .small-divider
     nav
       button Button
       .max max
       a.chip Chip
       i home
-      img.circle(:src="'/beer-and-woman.jpg'")
+      img.circle(:src="'/beer-and-woman.svg'")
     .small-divider
     nav
       .max max
       button Button
       a.chip Chip
       i home
-      img.circle(:src="'/beer-and-woman.jpg'")
+      img.circle(:src="'/beer-and-woman.svg'")
   .medium-space
   #navigation-rail
     .medium-space
@@ -98,7 +98,7 @@
         i code
     nav.wrap
       label.radio(v-show="!data.isHorizontal")
-        input#left-navigations(type="radio", name="position-navigations", @click="domain.updateMenu(data, 'left')", checked)
+        input#left-navigations(type="radio", name="position-navigations", checked, @click="domain.updateMenu(data, 'left')")
         span left
       label.radio(v-show="!data.isHorizontal")
         input#right-navigations(type="radio", name="position-navigations", @click="domain.updateMenu(data, 'right')")
@@ -109,6 +109,84 @@
       label.radio(v-show="data.isHorizontal")
         input#bottom-navigations(type="radio", name="position-navigations", @click="domain.updateMenu(data, 'bottom')")
         span bottom
+  .medium-space
+  #navigation-drawer
+    .medium-space
+    h6.middle-align
+      span Navigation drawer
+      a.chip.circle(@click="domain.showSamples(data, '#navigation-drawer > .drawer', 'Navigation drawer', null, 'https://github.com/beercss/beercss/blob/main/docs/NAVIGATION.md')")
+        i code
+    nav.wrap
+      label.radio
+        input#default-navigations(type="radio", name="size-navigations", checked, @click="domain.updateMinMax('#navigation-drawer > .drawer', '')")
+        span default
+      label.radio
+        input#min-navigations(type="radio", name="size-navigations", @click="domain.updateMinMax('#navigation-drawer > .drawer', 'min')")
+        span min
+      label.radio
+        input#max-navigations(type="radio", name="size-navigations", @click="domain.updateMinMax('#navigation-drawer > .drawer', 'max')")
+        span max
+    .medium-space
+    nav.drawer
+      header
+        nav
+          img.circle(:src="'/favicon.png'")
+          h6 Title
+      a
+        i inbox
+        span.max Inbox
+        b 24
+      a
+        i send
+        span Outbox
+      a
+        i favorite
+        span favorities
+      a
+        i delete
+        span Trash
+      .divider
+      label Labels
+      a
+        i fiber_manual_record
+        span Label
+      a
+        i change_history
+        span Label
+      a
+        i stop
+        span Label
+  .medium-space
+  #navigation-tabbed
+    .medium-space
+    h6.middle-align
+      span Navigation tabbed
+      a.chip.circle(@click="domain.showSamples(data, '#navigation-tabbed > .tabbed', 'Navigation tabbed', null, 'https://github.com/beercss/beercss/blob/main/docs/NAVIGATION.md')")
+        i code
+    nav.wrap
+      label.radio
+        input#small-navigations-tabbed(type="radio", name="size-navigations-tabbed", @click="domain.updateSize('#navigation-tabbed .tabbed', 'small')")
+        span small
+      label.radio
+        input#default-navigations-tabbed(type="radio", name="size-navigations-tabbed", checked, @click="domain.updateSize('#navigation-tabbed .tabbed', '')")
+        span medium
+      label.radio
+        input#large-navigations-tabbed(type="radio", name="size-navigations-tabbed", @click="domain.updateSize('#navigation-tabbed .tabbed', 'large')")
+        span large
+    .medium-space
+    nav.tabbed
+      a.active
+        i info
+        span Overview
+      a
+        i style
+        span Specs
+      a
+        i design_services
+        span Guidelines
+      a
+        i accessibility_new
+        span Acessibility
 </template>
 
 <script setup lang="ts">

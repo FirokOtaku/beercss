@@ -13,20 +13,10 @@ button {
   background-color: var(--primary);
   margin: 0 0.5rem;
   border-radius: 1.25rem;
-  transition: var(--speed3) transform, var(--speed3) border-radius, var(--speed3) padding;
+  transition: transform var(--speed3), border-radius var(--speed3), padding var(--speed3);
   user-select: none;
   gap: 1rem;
   line-height: normal;
-}
-
-:is(button, .button).none {
-  inline-size: auto;
-  block-size: auto;
-  color: var(--primary);
-  padding: 0;
-  background-color: transparent;
-  min-inline-size: auto;
-  min-block-size: 1.5rem;
 }
 
 :is(button, .button).small {
@@ -52,6 +42,10 @@ button {
 :is(button, .button).border {
   border-color: var(--outline);
   color: var(--primary);
+}
+
+:is(button, .button):not(.border, .chip):hover {
+  box-shadow: var(--elevate1);
 }
 
 .extend > span {

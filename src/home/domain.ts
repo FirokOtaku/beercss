@@ -1,28 +1,28 @@
 import { nextTick } from "vue";
-import { IHome } from "./interfaces";
+import { type IHome } from "./interfaces";
 import utils from "../shared/utils";
 import sharedDomain from "../shared/domain";
-import { ILayout } from "../shared/interfaces";
+import { type ILayout } from "../shared/interfaces";
 
-const updateElevate = (selector: any, elevate?: string) => {
+const updateElevate = (selector: string, elevate?: string) => {
   const elements = utils.queryAll(selector);
   utils.removeClass(elements, ["no-elevate", "small-elevate", "medium-elevate", "large-elevate"]);
   if (elevate) utils.addClass(elements, [elevate]);
 };
 
-const updateColor = (selector: any, color?: string) => {
+const updateColor = (selector: string | NodeListOf<Element>, color?: string) => {
   const elements = utils.queryAll(selector);
   utils.removeClass(elements, ["fill", "surface-variant", "surface", "background", "primary", "primary-container", "secondary", "secondary-container", "tertiary", "tertiary-container", "error", "amber", "blue", "blue-grey", "brown", "cyan", "deep-orange", "deep-purple", "green", "grey", "indigo", "light-blue", "light-green", "lime", "orange", "pink", "purple", "red", "teal", "yellow"]);
   if (color) utils.addClass(elements, [color]);
 };
 
-const updateBorderColor = (selector: any, borderColor?: string) => {
+const updateBorderColor = (selector: string | NodeListOf<Element>, borderColor?: string) => {
   const elements = utils.queryAll(selector);
   utils.removeClass(elements, ["primary-border", "secondary-border", "tertiary-border", "error-border", "amber-border", "blue-border", "blue-grey-border", "brown-border", "cyan-border", "deep-orange-border", "deep-purple-border", "green-border", "grey-border", "indigo-border", "light-blue-border", "light-green-border", "lime-border", "orange-border", "pink-border", "purple-border", "red-border", "teal-border", "yellow-border"]);
   if (borderColor) utils.addClass(elements, [borderColor]);
 };
 
-const updateTextColor = (selector: any, textColor?: string) => {
+const updateTextColor = (selector: string | NodeListOf<Element>, textColor?: string) => {
   const elements = utils.queryAll(selector);
   utils.removeClass(elements, ["primary-text", "secondary-text", "tertiary-text", "error-text", "amber-text", "blue-text", "blue-grey-text", "brown-text", "cyan-text", "deep-orange-text", "deep-purple-text", "green-text", "grey-text", "indigo-text", "light-blue-text", "light-green-text", "lime-text", "orange-text", "pink-text", "purple-text", "red-text", "teal-text", "yellow-text"]);
   if (textColor) utils.addClass(elements, [textColor]);
@@ -43,13 +43,13 @@ const updateSize = (selector: string, size?: string) => {
   if (size) utils.addClass(elements, [size]);
 };
 
-const updatePosition = (selector: any, position?: string) => {
+const updatePosition = (selector: string | NodeListOf<Element>, position?: string) => {
   const elements = utils.queryAll(selector);
   utils.removeClass(elements, ["left", "center", "right", "top", "middle", "bottom"]);
   if (position) utils.addClass(elements, (position || "").split(" "));
 };
 
-const updateAlign = (selector: any, alignment?: string) => {
+const updateAlign = (selector: string, alignment?: string) => {
   const elements = utils.queryAll(selector);
   utils.removeClass(elements, ["left-align", "center-align", "right-align", "top-align", "middle-align", "bottom-align"]);
   if (alignment) utils.addClass(elements, [alignment]);
@@ -232,7 +232,7 @@ const updateProgress = (value: number) => {
   });
 };
 
-const formatHtml = (element: any, raw: boolean = false): string => {
+const formatHtml = (element: Element | null, raw: boolean = false, useInnerHtml: boolean = false): string => {
   function process (str: string): string {
     const div = document.createElement("div");
     div.innerHTML = str.trim();
@@ -261,7 +261,7 @@ const formatHtml = (element: any, raw: boolean = false): string => {
   }
 
   const tag = utils.clone(element);
-  const text = tag?.outerHTML ?? "";
+  const text = useInnerHtml ? tag?.innerHTML ?? "" : tag?.outerHTML ?? "";
   if (raw) return process(text);
 
   utils.remove(tag?.querySelectorAll(".overlay"));
@@ -269,6 +269,7 @@ const formatHtml = (element: any, raw: boolean = false): string => {
 
   return process(text
     .replace(/<!--v-if-->/gi, "")
+    .replace(/<div class="overlay"><\/div>/gi, "")
     .replace(/\s+(wfd-id|id|data-ui|onclick|style|placeholder|data-v-\w+)="[^"]*"/gi, "")
     .replace(/\s+name="(\w+)"/gi, " name=\"$1_\"")
     .replace(/\s+(checked|disabled)=""/gi, " $1")
@@ -279,7 +280,7 @@ const formatHtml = (element: any, raw: boolean = false): string => {
     .replace(/\s+(checked|disabled)=""/gi, " $1");
 };
 
-const showSamples = (data: IHome, selector: string, name: string, dialog?: string, url?: string) => {
+const showSamples = (data: IHome, selector: string, name: string, dialog?: string, url?: string, useInnerHtml: boolean = false) => {
   const elements = utils.queryAll(selector);
   let text = "";
   let textFormatted = "";
@@ -294,14 +295,14 @@ const showSamples = (data: IHome, selector: string, name: string, dialog?: strin
 
     if (utils.is(element, ["nav.left", "nav.right", "nav.top", "nav.bottom"])) {
       utils.html(element?.querySelectorAll("dialog"), "");
-      text = formatHtml(element);
+      text = formatHtml(element, false, useInnerHtml);
       textFormatted = hljs.highlight("html", text).value;
     } else {
-      text = formatHtml(element);
+      text = formatHtml(element, false, useInnerHtml);
       textFormatted = hljs.highlight("html", text).value;
     }
 
-    if (utils.is(element, ["nav.left", "nav.right", "nav.top", "nav.bottom", "dialog", ".snackbar", "main.responsive", ".fixed:not(header, footer)"])) { text = ""; }
+    if (utils.is(element, ["nav.left", "nav.right", "nav.top", "nav.bottom", "dialog", ".snackbar", "main.responsive", ".fixed:not(header, footer, thead, tfoot)"])) { text = ""; }
 
     data.samples.push({
       html: (name === "Tooltips") ? `<div class="center-align">${text}</div>` : text,
@@ -310,9 +311,11 @@ const showSamples = (data: IHome, selector: string, name: string, dialog?: strin
   }
 
   void nextTick(() => {
-    void ui(data.dialogSample);
     const element = utils.query(data.dialogSample);
     element?.scrollTo(0, 0);
+    setTimeout(() => {
+      void ui(data.dialogSample);
+    }, 180);
   });
 };
 
@@ -339,7 +342,7 @@ const updateBlur = (selector: string, blur?: string) => {
   if (blur) utils.addClass(elements, [blur]);
 };
 
-const updateShadow = (selector: any, shadow?: string) => {
+const updateShadow = (selector: string, shadow?: string) => {
   const elements = utils.queryAll(selector);
   utils.removeClass(elements, ["shadow", "no-shadow", "top-shadow", "bottom-shadow", "left-shadow", "right-shadow"]);
   if (shadow) utils.addClass(elements, [shadow]);
@@ -349,6 +352,12 @@ const updateLine = (selector: string, line?: string) => {
   const elements = utils.queryAll(selector);
   utils.removeClass(elements, ["no-line", "tiny-line", "small-line", "medium-line", "large-line", "extra-line"]);
   if (line) utils.addClass(elements, [line]);
+};
+
+const updateRtlLtr = (data: IHome) => {
+  data.isRtl = !data.isRtl;
+  if (data.isRtl) document.body.setAttribute("dir", "rtl");
+  else document.body.removeAttribute("dir");
 };
 
 export default {
@@ -386,4 +395,5 @@ export default {
   updateBlur,
   updateShadow,
   updateLine,
+  updateRtlLtr,
 };

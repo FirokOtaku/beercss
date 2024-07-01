@@ -1,5 +1,8 @@
 .field {
-  block-size: 3rem;
+  ---size: 3rem;
+  ---start: 1.2rem;
+
+  block-size: var(---size);
   margin-block-end: 2rem;
 }
 
@@ -28,15 +31,18 @@
 }
 
 .field.small {
-  block-size: 2.5rem;
+  ---size: 2.5rem;
+  ---start: 1rem;
 }
 
 .field.large {
-  block-size: 3.5rem;
+  ---size: 3.5rem;
+  ---start: 1.4rem;
 }
 
 .field.extra {
-  block-size: 4rem;
+  ---size: 4rem;
+  ---start: 1.6rem;
 }
 
 .field {
@@ -63,26 +69,10 @@
   border-radius: 2rem;
 }
 
-.field::before {
-  content: "";
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-  inset-inline-end: 0;
-  inset-block-end: 0;
-  border-radius: inherit;
-  background-color: inherit;
-}
-
-.field.fill::before {
-  background-color: var(--surface-container-highest);
-  color: var(--on-surface-variant);
-}
-
 /* icon */
 .field > :is(i, img, svg, progress, a:not(.helper, .error)) {
   position: absolute;
-  inset-block-start: 50%;
+  inset: 50% auto auto auto;
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 0;
@@ -91,15 +81,13 @@
 }
 
 .field > :is(i, img, svg, progress, a:not(.helper, .error)),
-[dir=rtl] .field > :is(i, a:not(.helper, .error)):first-child {
-  inset-inline-start: auto;
-  inset-inline-end: 1rem;
+[dir=rtl] .field > :is(i, img, svg, progress, a:not(.helper, .error)):first-child {
+  inset: 50% 1rem auto auto;
 }
 
 .field > :is(i, img, svg, progress, a:not(.helper, .error)):first-child,
-[dir=rtl] .field > :is(i, a:not(.helper, .error)) {
-  inset-inline-start: 1rem;
-  inset-inline-end: auto;
+[dir=rtl] .field > :is(i, img, svg, progress, a:not(.helper, .error)) {
+  inset: 50% auto auto 1rem;
 }
 
 .field.invalid > i {
@@ -107,7 +95,7 @@
 }
 
 .field > progress.circle {
-  inset-block-start: calc(50% - 0.75rem);
+  inset-block-start: calc(50% - 0.75rem) !important;
   border-width: 0.1875rem;
 }
 
@@ -122,10 +110,14 @@
 
 /* input, textarea and select */
 .field > :is(input, textarea, select) {
-  appearance: none;
+  all: unset;
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: inherit;
   border: 0.0625rem solid transparent;
-  padding-inline: 0.9375rem;
-  padding-block: 0;
+  padding: 0 0.9375rem;
   font-family: inherit;
   font-size: 1rem;
   inline-size: 100%;
@@ -138,24 +130,23 @@
 
 .field > :is(input, textarea, select):focus {
   border: 0.125rem solid transparent;
-  padding-block: 0;
-  padding-inline: 0.875rem;
+  padding: 0 0.875rem;
 }
 
+.field.min > textarea {
+  overflow: hidden;
+  position: absolute;
+  inset: 0;
+}
 
 input[type=file],
 input[type=color],
 :not(.field) > input[type^=date],
 :not(.field) > input[type^=time],
-input::-webkit-inner-spin-button,
-input::-webkit-outer-spin-button,
 input::-webkit-calendar-picker-indicator {
   opacity: 0;
   position: absolute;
-  inset-block-start: 0;
-  inset-block-end: 0;
-  inset-inline-start: 0;
-  inset-inline-end: 0;
+  inset: 0;
   inline-size: 100%;
   block-size: 100%;
   margin: 0;
@@ -168,8 +159,14 @@ input::-webkit-calendar-picker-indicator {
 input::-webkit-search-decoration,
 input::-webkit-search-cancel-button,
 input::-webkit-search-results-button,
-input::-webkit-search-results-decoration {
+input::-webkit-search-results-decoration,
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
   display: none;
+}
+
+input[type=number] {
+  appearance: textfield;
 }
 
 .field.border > :is(input, textarea, select) {
@@ -181,13 +178,11 @@ input::-webkit-search-results-decoration {
 }
 
 .field.round > :is(input, textarea, select) {
-  padding-inline-start: 1.4376rem;
-  padding-inline-end: 1.4376rem;
+  padding-inline: 1.4376rem;
 }
 
 .field.round > :is(input, textarea, select):focus {
-  padding-inline-start: 1.375rem;
-  padding-inline-end: 1.375rem;
+  padding-inline: 1.375rem;
 }
 
 .field.prefix > :is(input, textarea, select) {
@@ -250,20 +245,24 @@ input::-webkit-search-results-decoration {
   cursor: not-allowed;
 }
 
-.field.small.textarea {
-  block-size: 4.5rem;
+.field.textarea.small:not(.min) {
+  ---size: 4.5rem;
 }
 
-.field.textarea {
-  block-size: 5.5rem;
+.field.textarea:not(.min) {
+  ---size: 5.5rem;
 }
 
-.field.large.textarea {
-  block-size: 6.5rem;
+.field.textarea.large:not(.min) {
+  ---size: 6.5rem;
 }
 
-.field.extra.textarea {
-  block-size: 7.5rem;
+.field.textarea.extra:not(.min) {
+  ---size: 7.5rem;
+}
+
+.field > select {
+  user-select: none;
 }
 
 .field > select > option {
@@ -279,67 +278,28 @@ input::-webkit-search-results-decoration {
   padding-block-start: 0;
 }
 
-.field.label.small > textarea {
-  padding-block-start: 1.125rem;
+.field > textarea {
+  padding-block-start: var(---start);
 }
 
-.field.label > textarea {
-  padding-block-start: 1.375rem;
+.field > textarea:focus {
+  padding-block-start: calc(var(---start) - 0.06rem);
 }
 
-.field.label.large > textarea {
-  padding-block-start: 1.625rem;
+.field:not(.label) > textarea,
+.field.border.label:not(.fill) > textarea {
+  padding-block-start: calc(var(---start) - 0.5rem);
 }
 
-.field.label.extra > textarea {
-  padding-block-start: 1.875rem;
-}
-
-.field.small > textarea,
-.field.small:not(.label) > textarea:focus,
-.field.small.border:not(.fill) > textarea {
-  padding-block-start: 0.625rem;
-}
-
-.field > textarea,
 .field:not(.label) > textarea:focus,
-.field.border:not(.fill) > textarea {
-  padding-block-start: 0.875rem;
-}
-
-.field.large > textarea,
-.field.large:not(.label) > textarea:focus,
-.field.large.border:not(.fill) > textarea {
-  padding-block-start: 1.125rem;
-}
-
-.field.extra > textarea,
-.field.extra:not(.label) > textarea:focus,
-.field.extra.border:not(.fill) > textarea {
-  padding-block-start: 1.375rem;
-}
-
-.field.small.border:not(.fill) > textarea:focus {
-  padding-block-start: 0.5625rem !important;
-}
-
-.field.border:not(.fill) > textarea:focus {
-  padding-block-start: 0.8125rem !important;
-}
-
-.field.large.border:not(.fill) > textarea:focus {
-  padding-block-start: 1.0625rem !important;
-}
-
-.field.extra.border:not(.fill) > textarea:focus {
-  padding-block-start: 1.3125rem !important;
+.field.border.label:not(.fill) > textarea:focus {
+  padding-block-start: calc(var(---start) - 0.56rem);
 }
 
 /* label */
 .field.label > label {
   position: absolute;
-  inset-block-start: -0.5rem;
-  inset-inline-start: 1rem;
+  inset: -0.5rem auto auto 1rem;
   display: flex;
   inline-size: calc(100% - 5rem);
   block-size: 4rem;
@@ -348,6 +308,10 @@ input::-webkit-search-results-decoration {
   transition: all 0.2s;
   gap: 0.25rem;
   white-space: nowrap;
+}
+
+[dir=rtl] .field.label > label {
+  inset: -0.5rem 1rem auto auto;
 }
 
 .field.label.small > label {
@@ -449,12 +413,15 @@ input::-webkit-search-results-decoration {
 /* helper */
 .field > :is(.helper, .error) {
   position: absolute;
-  inset-inline-start: 1rem;
-  inset-block-end: 0;
+  inset: auto auto 0 1rem;
   transform: translateY(100%);
   font-size: 0.75rem;
   background: none !important;
   padding-block-start: 0.125rem;
+}
+
+[dir=rtl] .field > :is(.helper, .error) {
+  inset: auto 1rem 0 auto;
 }
 
 a.helper {

@@ -23,9 +23,13 @@ left-align, right-align, center-align, top-align, bottom-align, middle-align
 
 fill, primary-container, secondary-container, tertiary-container
 
+**Directions**
+
+vertical, horizontal
+
 **Forms**
 
-border, round, no-round, left-round, right-round, top-round, bottom-round
+border, round, no-round, left-round, right-round, top-round, bottom-round, drawer, tabbed
 
 **Margins**
 
@@ -46,11 +50,11 @@ no-space, small-space, medium-space, large-space, wrap, no-wrap
 ## Row example
 
 ```html
-<nav class="row">
+<div class="row">
   <div>min</div>
   <div>min</div>
   <div class="max">max</div>
-</nav>
+</div>
 ```
 
 ## Navigation example
@@ -65,6 +69,29 @@ no-space, small-space, medium-space, large-space, wrap, no-wrap
   <label class="checkbox">
     <input type="checkbox">
   </label>
+</nav>
+```
+
+```html
+<nav>
+  <ul>
+    <li>
+      <button>Button</button>
+    </li>
+    <li>
+      <a class="chip">Chip</button>
+    </li>
+    <li>
+      <a>
+        <img class="circle" src="/image.png" />
+      </a>
+    </li>
+    <li>
+      <label class="checkbox">
+        <input type="checkbox">
+      </label>
+    </li>
+  </ul>
 </nav>
 ```
 
@@ -104,8 +131,44 @@ no-space, small-space, medium-space, large-space, wrap, no-wrap
 </nav>
 ```
 
+## Navigation drawer example
+```html
+<nav class="drawer">
+  <a>
+    <i>home</i>
+    <div>Home</div>
+  </a>
+  <a>
+    <i>search</i>
+    <div>Search</div>
+  </a>
+  <a>
+    <i>more_vert</i>
+    <div>More</div>
+  </a>
+</nav>
+```
+
+## Navigation tabbed example
+```html
+<nav class="tabbed">
+  <a>
+    <i>home</i>
+    <div>Home</div>
+  </a>
+  <a>
+    <i>search</i>
+    <div>Search</div>
+  </a>
+  <a>
+    <i>more_vert</i>
+    <div>More</div>
+  </a>
+</nav>
+```
+
 ## Go to
 
 [Begin](INDEX.md), [Elements](ELEMENTS.md), [Helpers](HELPERS.md), [Settings](SETTINGS.md), [Summary](SUMMARY.md), [beercss.com](https://www.beercss.com)
 
-[Badge](BADGE.md), [Button](BUTTON.md), [Card](CARD.md), [Checkbox](CHECKBOX.md), [Chip](CHIP.md), [Container](CONTAINER.md), [Dialog](DIALOG.md), [Expansion](EXPANSION.md), [Grid](GRID.md), [Icon](ICON.md), [Input](INPUT.md), [Layout](LAYOUT.md), [Media](MEDIA.md), [Menu](MENU.md), [Navigation](NAVIGATION.md), [Overlay](OVERLAY.md), [Page](PAGE.md), [Progress](PROGRESS.md), [Radio](RADIO.md), [Select](SELECT.md), [Slider](SLIDER.md), [Switch](SWITCH.md), [Table](TABLE.md), [Tabs](TABS.md), [Textarea](TEXTAREA.md), [Snackbar](SNACKBAR.md), [Tooltip](TOOLTIP.md), [Typography](TYPOGRAPHY.md)
+[Badge](BADGE.md), [Button](BUTTON.md), [Card](CARD.md), [Checkbox](CHECKBOX.md), [Chip](CHIP.md), [Container](CONTAINER.md), [Dialog](DIALOG.md), [Expansion](EXPANSION.md), [Grid](GRID.md), [Icon](ICON.md), [Input](INPUT.md), [Layout](LAYOUT.md), [List](LIST.md), [Main layout](MAIN_LAYOUT.md), [Media](MEDIA.md), [Menu](MENU.md), [Navigation](NAVIGATION.md), [Overlay](OVERLAY.md), [Page](PAGE.md), [Progress](PROGRESS.md), [Radio](RADIO.md), [Select](SELECT.md), [Slider](SLIDER.md), [Switch](SWITCH.md), [Table](TABLE.md), [Tabs](TABS.md), [Textarea](TEXTAREA.md), [Snackbar](SNACKBAR.md), [Tooltip](TOOLTIP.md), [Typography](TYPOGRAPHY.md)

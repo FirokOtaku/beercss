@@ -6,11 +6,11 @@ Use this page to learn. This page has the most used combinations of elements and
 
 **absolute** left, right, top, bottom, front, back, small, medium, large
 
-**&lt;article&gt;** small, medium, large, border, round, no-round, left-round, top-round, right-round, bottom-round, padding, no-padding, auto-padding, tiny-padding, small-padding, medium-padding, large-padding
+**&lt;article&gt;** small, medium, large, border, round, no-round, left-round, top-round, right-round, bottom-round, padding, no-padding, tiny-padding, small-padding, medium-padding, large-padding
 
 **badge** left, right, top, bottom, border, circle, square, round, no-round, left-round, right-round, top-round, bottom-round
 
-**button or &lt;button&gt;** small, medium, large, extra, none, extend, border, circle, square, round, no-round, left-round, right-round, top-round, bottom-round, responsive, horizontal, vertical
+**button or &lt;button&gt;** small, medium, large, extra, extend, border, circle, square, round, no-round, left-round, right-round, top-round, bottom-round, responsive, horizontal, vertical
 
 **chip** small, medium, large, border, no-border, circle, square, round, no-round, left-round, right-round, top-round, bottom-round, horizontal, vertical
 
@@ -34,27 +34,29 @@ Use this page to learn. This page has the most used combinations of elements and
 
 **&lt;label&gt;** active, radio, checkbox, switch
 
+**&lt;li&gt;** max, divider, small-divider, medium-divider, large-divider
+
 **&lt;main&gt;** responsive, max
 
 **&lt;menu&gt;** left, right, wrap, no-wrap, min, max, active
 
-**&lt;nav&gt;** left, right, top, bottom, left-align, right-align, center-align, top-align, bottom-align, middle-align, border, round, no-round, left-round, right-round, top-round, bottom-round, no-space, small-space, medium-space, large-space, wrap, no-wrap, margin, no-margin, tiny-margin, small-margin, medium-margin, large-margin
+**&lt;nav&gt;** left, right, top, bottom, drawer, tabbed, min, max, left-align, right-align, center-align, top-align, bottom-align, middle-align, border, round, no-round, left-round, right-round, top-round, bottom-round, no-space, small-space, medium-space, large-space, wrap, no-wrap, margin, no-margin, tiny-margin, small-margin, medium-margin, large-margin
 
-**overlay** left-align, right-align, center-align, top-align, bottom-align, middle-align, active
+**overlay** left-align, right-align, center-align, top-align, bottom-align, middle-align, active, blur, small-blur, medium-blur, large-blur
 
 **page** left, right, top, bottom, active
 
-***&lt;progress&gt;** small, medium, large, circle
+**&lt;progress&gt;** small, medium, large, circle, max, vertical
 
-**row** left-align, right-align, center-align, top-align, bottom-align, middle-align
+**row, &lt;ul&gt; or &lt;ol&gt;** left-align, right-align, center-align, top-align, bottom-align, middle-align, no-space, small-space, medium-space, large-space, horizontal, vertical
+
+**snackbar** top, bottom, active
 
 **&lt;summary&gt;**
 
-**&lt;table&gt;** left-align, right-align, center-align, no-space, space, small-space, medium-space, large-space, border
+**&lt;table&gt;** left-align, right-align, center-align, no-space, space, small-space, medium-space, large-space, border, stripes, min, fixed
 
 **tabs** left-align, right-align, center-align, horizontal, vertical, min, max
-
-**snackbar** top, bottom, active
 
 **tooltip** left, right, top, bottom, max
 
@@ -74,13 +76,13 @@ Use this page to learn. This page has the most used combinations of elements and
 
 **Elevates** elevate, no-elevate, small-elevate, medium-elevate, large-elevate
 
-**Forms** border, no-border, circle, square, none, fill, extend, round, no-round, small-round, medium-round, large-round, left-round, right-round, top-round, bottom-round
+**Forms** border, no-border, circle, square, none, fill, extend, drawer, tabbed, round, no-round, small-round, medium-round, large-round, left-round, right-round, top-round, bottom-round
 
 **Margins** margin, no-margin, auto-margin, tiny-margin, small-margin, medium-margin, large-margin, left-margin, right-margin, top-margin, bottom-margin, horizontal-margin, vertical-margin
 
 **Opacities** opacity, no-opacity, small-opacity, medium-opacity, large-opacity
 
-**Paddings** padding, no-padding, auto-padding, tiny-padding small-padding, medium-padding, large-padding, left-padding, right-padding, top-padding, bottom-padding, horizontal-padding, vertical-padding
+**Paddings** padding, no-padding, tiny-padding small-padding, medium-padding, large-padding, left-padding, right-padding, top-padding, bottom-padding, horizontal-padding, vertical-padding
 
 **Positions** left, right, center, top, bottom, middle, front, back
 
@@ -90,7 +92,7 @@ Use this page to learn. This page has the most used combinations of elements and
 
 **Shadows** shadow, left-shadow, right-shadow, top-shadow, bottom-shadow
 
-**Sizes** tiny, small, medium, large, extra, wrap, no-wrap, max, small-width, medium-width, large-width, small-height, medium-height, large-height
+**Sizes** tiny, small, medium, large, extra, wrap, no-wrap, max, auto-width, small-width, medium-width, large-width, auto-height, small-height, medium-height, large-height
 
 **Spaces** space, no-space, small-space, medium-space, large-space
 
@@ -110,4 +112,4 @@ Use this page to learn. This page has the most used combinations of elements and
 
 [Begin](INDEX.md), [Elements](ELEMENTS.md), [Helpers](HELPERS.md), [Settings](SETTINGS.md), [Summary](SUMMARY.md), [beercss.com](https://www.beercss.com)
 
-[Badge](BADGE.md), [Button](BUTTON.md), [Card](CARD.md), [Checkbox](CHECKBOX.md), [Chip](CHIP.md), [Container](CONTAINER.md), [Dialog](DIALOG.md), [Expansion](EXPANSION.md), [Grid](GRID.md), [Icon](ICON.md), [Input](INPUT.md), [Layout](LAYOUT.md), [Media](MEDIA.md), [Menu](MENU.md), [Navigation](NAVIGATION.md), [Overlay](OVERLAY.md), [Page](PAGE.md), [Progress](PROGRESS.md), [Radio](RADIO.md), [Select](SELECT.md), [Slider](SLIDER.md), [Switch](SWITCH.md), [Table](TABLE.md), [Tabs](TABS.md), [Textarea](TEXTAREA.md), [Snackbar](SNACKBAR.md), [Tooltip](TOOLTIP.md), [Typography](TYPOGRAPHY.md)
+[Badge](BADGE.md), [Button](BUTTON.md), [Card](CARD.md), [Checkbox](CHECKBOX.md), [Chip](CHIP.md), [Container](CONTAINER.md), [Dialog](DIALOG.md), [Expansion](EXPANSION.md), [Grid](GRID.md), [Icon](ICON.md), [Input](INPUT.md), [Layout](LAYOUT.md), [List](LIST.md), [Main layout](MAIN_LAYOUT.md), [Media](MEDIA.md), [Menu](MENU.md), [Navigation](NAVIGATION.md), [Overlay](OVERLAY.md), [Page](PAGE.md), [Progress](PROGRESS.md), [Radio](RADIO.md), [Select](SELECT.md), [Slider](SLIDER.md), [Switch](SWITCH.md), [Table](TABLE.md), [Tabs](TABS.md), [Textarea](TEXTAREA.md), [Snackbar](SNACKBAR.md), [Tooltip](TOOLTIP.md), [Typography](TYPOGRAPHY.md)

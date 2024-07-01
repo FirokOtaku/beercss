@@ -9,7 +9,7 @@
       i {{ data.isDark ? "light_mode" : "dark_mode" }}
     a.chip.circle
       i palette
-      input(type="color", @change="sharedDomain.updateTheme(data, $event)")
+      input(type="color", @input="sharedDomain.updateTheme(data, $event)")
     a.chip.circle
       i upload
       input(type="file", @change="sharedDomain.updateTheme(data, $event)")
@@ -38,24 +38,28 @@
   .grid
     .s12.m6.l3
       h6 Primary
+      .space
       .padding.primary primary
       .padding.primary-container primary-container
       .padding.border.primary-border primary-border
       .padding.primary-text primary-text
     .s12.m6.l3
       h6 Secondary
+      .space
       .padding.secondary secondary
       .padding.secondary-container secondary-container
       .padding.border.secondary-border secondary-border
       .padding.secondary-text secondary-text
     .s12.m6.l3
       h6 Tertiary
+      .space
       .padding.tertiary tertiary
       .padding.tertiary-container tertiary-container
       .padding.border.tertiary-border tertiary-border
       .padding.tertiary-text tertiary-text
     .s12.m6.l3
       h6 Error
+      .space
       .padding.error error
       .padding.error-container error-container
       .padding.border.error-border error-border
@@ -80,12 +84,13 @@
           .padding.surface-container-highest surface-container-highest
     .s12.m6.l3
       h6 Others
-      .grid 
+      .grid
         .s12
           .padding.inverse-primary inverse-primary
           .padding.inverse-primary-border.border inverse-primary-border
           .padding.inverse-primary-text inverse-primary-text
 
+  .overlay
   dialog#dialog-colors.right.medium
     header.fixed
       nav
@@ -95,10 +100,10 @@
     div
       nav
         label.radio
-          input(type="radio", value="light", v-model="data.theme.selected")
+          input(v-model="data.theme.selected", type="radio", value="light")
           span Light
         label.radio
-          input(type="radio", value="dark", v-model="data.theme.selected")
+          input(v-model="data.theme.selected", type="radio", value="dark")
           span Dark
     .space
     article.border
@@ -426,13 +431,11 @@
 </template>
 
 <script setup lang="ts">
-import domain from "./domain";
 import sharedDomain from "../shared/domain";
 import data from "./data";
-import { onMounted } from "vue";
 
 const sourceCode = () => {
-  return ((data.value.theme as any)[data.value.theme.selected] || "").replace(/\;/g, ";<br/>");
+  return ((data.value.theme as any)[data.value.theme.selected] || "").replace(/;/g, ";<br/>");
 };
 </script>
 

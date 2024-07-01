@@ -6,20 +6,20 @@ From jsdelivr.net.
 
 ```html
 // with html
-<link href="https://cdn.jsdelivr.net/npm/beercss@3.4.2/dist/cdn/beer.min.css" rel="stylesheet" />
-<script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.4.2/dist/cdn/beer.min.js"></script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.0/dist/cdn/material-dynamic-colors.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/beercss@3.6.5/dist/cdn/beer.min.css" rel="stylesheet" />
+<script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.6.5/dist/cdn/beer.min.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
 ```
 
 ```css
 // with css
-@import "https://cdn.jsdelivr.net/npm/beercss@3.4.2/dist/cdn/beer.min.css";
+@import "https://cdn.jsdelivr.net/npm/beercss@3.6.5/dist/cdn/beer.min.css";
 ```
 
 ```js
 // with javascript
-import "https://cdn.jsdelivr.net/npm/beercss@3.4.2/dist/cdn/beer.min.js";
-import "https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.0/dist/cdn/material-dynamic-colors.min.js";
+import "https://cdn.jsdelivr.net/npm/beercss@3.6.5/dist/cdn/beer.min.js";
+import "https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js";
 ```
 
 #### NPM
@@ -47,9 +47,6 @@ import materialDynamicColors from "material-dynamic-colors";
 ```js
 // importing manually from dist
 import "beercss/dist/cdn/beer.min.css";
-import "beercss/dist/cdn/material-symbols-outlined.woff2";
-import "beercss/dist/cdn/material-symbols-rounded.woff2";
-import "beercss/dist/cdn/material-symbols-sharp.woff2";
 import beercss from "beercss/dist/cdn/beer.min.js";
 import materialDynamicColors from "material-dynamic-colors/dist/cdn/material-dynamic-colors.min.js";
 ```
@@ -57,16 +54,13 @@ import materialDynamicColors from "material-dynamic-colors/dist/cdn/material-dyn
 ```js
 // importing manually from src
 import "beercss/src/cdn/beer.css";
-import "beercss/src/cdn/material-symbols-outlined.woff2";
-import "beercss/src/cdn/material-symbols-rounded.woff2";
-import "beercss/src/cdn/material-symbols-sharp.woff2";
 import beercss from "beercss/src/cdn/beer.ts";
 import materialDynamicColors from "material-dynamic-colors/src/cdn/material-dynamic-colors.js";
 ```
 
 ### HTML
 
-You can use this html to setup your project. See on [Codepen](https://codepen.io/leo-bnu/pen/yLKLPxj).
+You can use this html to setup your project. See on [Codepen](https://codepen.io/leo-bnu/pen/yLKLPxj). More about in [Main layout](MAIN_LAYOUT.md).
 
 ```html
 <html>
@@ -76,13 +70,54 @@ You can use this html to setup your project. See on [Codepen](https://codepen.io
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="google" content="notranslate">
     <title>Hello world</title>
-    <link href="https://cdn.jsdelivr.net/npm/beercss@3.4.2/dist/cdn/beer.min.css" rel="stylesheet">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.4.2/dist/cdn/beer.min.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.0/dist/cdn/material-dynamic-colors.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/beercss@3.6.5/dist/cdn/beer.min.css" rel="stylesheet">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.6.5/dist/cdn/beer.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"></script>
   </head>
-  <body class="light">
-    <nav class="left m l">
-      <img src="https://www.beercss.com/favicon.png" class="circle margin">
+  <body class="dark">
+    <nav class="left drawer l">
+      <header>
+        <nav>
+          <img src="https://www.beercss.com/favicon.png" class="circle">
+          <h6>Cheers</h6>
+        </nav>
+      </header>
+      <a>
+        <i>home</i>
+        <div>Home</div>
+      </a>
+      <a>
+        <i>search</i>
+        <div>Search</div>
+      </a>
+      <a>
+        <i>share</i>
+        <div>Share</div>
+      </a>
+      <a>
+        <i>more_vert</i>
+        <div>More</div>
+      </a>
+      <div class="divider"></div>
+      <label>Label</label>
+      <a>
+        <i>widgets</i>
+        <div>Widgets</div>
+      </a>
+      <a>
+        <i>chat</i>
+        <div>Chat</div>
+      </a>
+      <a>
+        <i>help</i>
+        <div>Help</div>
+      </a>  
+    </nav>
+
+    <nav class="left m">
+      <header>
+        <img src="https://www.beercss.com/favicon.png" class="circle">
+      </header>
       <a>
         <i>home</i>
         <div>Home</div>
@@ -100,7 +135,7 @@ You can use this html to setup your project. See on [Codepen](https://codepen.io
         <div>More</div>
       </a>
     </nav>
-    
+
     <nav class="bottom s">
       <a>
         <i>home</i>
@@ -115,9 +150,9 @@ You can use this html to setup your project. See on [Codepen](https://codepen.io
         <i>more_vert</i>
       </a>
     </nav>
-    
+
     <main class="responsive">
-      <img src="https://www.beercss.com/beer-and-woman.jpg" class="responsive round">
+      <img src="https://www.beercss.com/beer-and-woman.svg" class="responsive round">
       <h3>Welcome</h3>
       <h5>The beer is ready!</h5>
     </main>
@@ -125,7 +160,7 @@ You can use this html to setup your project. See on [Codepen](https://codepen.io
 </html>
 ```
 
-**We recommend use the material-dynamic-colors only when your app needs to change theme at runtime.**
+**We recommend to use the material-dynamic-colors only when your app needs to change theme at runtime.**
 
 ## [Settings](SETTINGS.md)
 
@@ -149,4 +184,4 @@ The common helpers makes the elements more scalable and customizable.
 
 [Begin](INDEX.md), [Elements](ELEMENTS.md), [Helpers](HELPERS.md), [Settings](SETTINGS.md), [Summary](SUMMARY.md), [beercss.com](https://www.beercss.com)
 
-[Badge](BADGE.md), [Button](BUTTON.md), [Card](CARD.md), [Checkbox](CHECKBOX.md), [Chip](CHIP.md), [Container](CONTAINER.md), [Dialog](DIALOG.md), [Expansion](EXPANSION.md), [Grid](GRID.md), [Icon](ICON.md), [Input](INPUT.md), [Layout](LAYOUT.md), [Media](MEDIA.md), [Menu](MENU.md), [Navigation](NAVIGATION.md), [Overlay](OVERLAY.md), [Page](PAGE.md), [Progress](PROGRESS.md), [Radio](RADIO.md), [Select](SELECT.md), [Slider](SLIDER.md), [Switch](SWITCH.md), [Table](TABLE.md), [Tabs](TABS.md), [Textarea](TEXTAREA.md), [Snackbar](SNACKBAR.md), [Tooltip](TOOLTIP.md), [Typography](TYPOGRAPHY.md)
+[Badge](BADGE.md), [Button](BUTTON.md), [Card](CARD.md), [Checkbox](CHECKBOX.md), [Chip](CHIP.md), [Container](CONTAINER.md), [Dialog](DIALOG.md), [Expansion](EXPANSION.md), [Grid](GRID.md), [Icon](ICON.md), [Input](INPUT.md), [Layout](LAYOUT.md), [List](LIST.md), [Main layout](MAIN_LAYOUT.md), [Media](MEDIA.md), [Menu](MENU.md), [Navigation](NAVIGATION.md), [Overlay](OVERLAY.md), [Page](PAGE.md), [Progress](PROGRESS.md), [Radio](RADIO.md), [Select](SELECT.md), [Slider](SLIDER.md), [Switch](SWITCH.md), [Table](TABLE.md), [Tabs](TABS.md), [Textarea](TEXTAREA.md), [Snackbar](SNACKBAR.md), [Tooltip](TOOLTIP.md), [Typography](TYPOGRAPHY.md)

@@ -1,11 +1,9 @@
 <template lang="pug">
 div
-  nav.left.no-space.m.l
-    .large-space
-    .medium-space
-    a.button.fill.square.round.extra(data-ui="#dialog-add")
+  nav.left.m.l.medium-space
+    header
+    button.fill.square.round.extra(data-ui="#dialog-add")
       i add
-    .space
     a(href="/gmail", :class="{ active: data.url === '/gmail' }")
       i inbox
       .tooltip.right Inbox
@@ -35,20 +33,19 @@ div
       .medium-space
 
   nav.right.m.l
-    .medium-space
-    .space
+    header
     button.circle.transparent.large
-      span.tooltip.left Calendar
       img.no-round(:src="'/calendar.png'")
+      .tooltip.left Calendar
     button.circle.transparent.large
-      span.tooltip.left Keep
       img.no-round(:src="'/keep.png'")
+      .tooltip.left Keep
     button.circle.transparent.large
-      span.tooltip.left Tasks
       img.no-round(:src="'/tasks.png'")
+      .tooltip.left Tasks
     button.circle.transparent.large
-      span.tooltip.left Contacts
       img.no-round(:src="'/contacts.png'")
+      .tooltip.left Contacts
 
   nav.bottom.s
     a(href="/gmail", :class="{ active: data.url === '/gmail' }")
@@ -97,10 +94,11 @@ div
     img(v-show="!data.isDark", :src="'/gmail-light.png'")
     img(v-show="data.isDark", :src="'/gmail-dark.png'")
     .max
-    .max.field.round.suffix.prefix.small.no-margin.m.l.white.black-text
-      i.front search
-      input(type="text", data-ui="#menu-search")
-      i.front mic
+    .max
+      .field.round.suffix.prefix.small.no-margin.m.l.white.black-text
+        i.front search
+        input(type="text", data-ui="#menu-search")
+        i.front mic
     .max
     button.circle.large.transparent.s(data-ui="#dialog-search")
       i search
@@ -120,25 +118,26 @@ div
       menu#menu-apps.left.padding.no-wrap(data-ui="#menu-apps")
         .grid.no-space
           .s4.center-align
-            button.transparent.circle.large
+            a.button.transparent.circle.large
               img.no-round(:src="'/calendar.png'")
           .s4.center-align
-            button.transparent.circle.large
+            a.button.transparent.circle.large
               img.no-round(:src="'/keep.png'")
           .s4.center-align
-            button.transparent.circle.large
+            a.button.transparent.circle.large
               img.no-round(:src="'/tasks.png'")
           .s4.center-align
-            button.transparent.circle.large
+            a.button.transparent.circle.large
               img.no-round(:src="'/contacts.png'")
           .s4.center-align
-            button.transparent.circle.large
+            a.button.transparent.circle.large
               img.no-round(:src="'/favicon.png'")
     button.circle.large.small-margin.transparent(@click="redirect('/')")
       img.responsive(:src="'/favicon.png'")
     themes(id="themes3", v-model="data")
 
   main.responsive.max
+    .overlay
     dialog#dialog-add.round.large-width
       nav
         button.circle.transparent(data-ui="#dialog-add")
@@ -167,6 +166,7 @@ div
             textarea
             label Message
 
+    .overlay
     dialog#dialog-add-small.top-round.bottom
       nav
         button.circle.transparent(data-ui="#dialog-add-small")
@@ -195,6 +195,7 @@ div
             textarea
             label Message
 
+    .overlay
     dialog#dialog-search.top.transparent
       nav
         .max.m.l
@@ -216,7 +217,6 @@ div
 import { onMounted } from "vue";
 import themes from "../shared/themes.vue";
 import data from "./data";
-import sharedDomain from "../shared/domain";
 import home from "./home.vue";
 import drafts from "./drafts.vue";
 import important from "./important.vue";

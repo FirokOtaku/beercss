@@ -50,10 +50,10 @@
             div Title
             label Some text here
         a.row
-          img.circle.tiny(:src="'/beer-and-woman.jpg'")
+          img.circle.tiny(:src="'/beer-and-woman.svg'")
           span Title
         a.row
-          img.circle.tiny(:src="'/beer-and-woman.jpg'")
+          img.circle.tiny(:src="'/beer-and-woman.svg'")
           .max
             div Title
             label Some text here
@@ -74,6 +74,22 @@
         a Item 1
         a Item 2
         a Item 3
+  nav.wrap
+    button(data-ui="#menu9")
+      span Multi level
+      i arrow_drop_down
+      menu(id="menu9")
+        a Item
+        a Item
+        a More items
+        menu
+          a Item
+          a Item
+          a More items
+          menu
+            a Item
+            a Item
+            a item
 </template>
 
 <script setup lang="ts">

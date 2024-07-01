@@ -1,8 +1,8 @@
 <template lang="pug">
 div
-  nav#navigation-rail1.m.l.left.tiny-padding
-    a(@click="domain.addHomeScreen()")
-      img.circle(:src="'/favicon.png'")
+  nav#navigation-rail1.m.l.left
+    header
+      img.circle(:src="'/favicon.png'", @click="domain.addHomeScreen()")
     a(@click="domain.goTo('#intro')")
       i home
       span Install
@@ -15,6 +15,12 @@ div
     a(@click="domain.updateMenu(data, 'right')")
       i arrow_forward
       span Right
+    a(v-show="!data.isRtl", @click="domain.updateRtlLtr(data)")
+      i checklist_rtl
+      span RTL
+    a(v-show="data.isRtl", @click="domain.updateRtlLtr(data)")
+      i checklist
+      span LTR
     a(@click="domain.showSamples(data, '#navigation-rail1', 'Navigation rail/bar', null, 'https://github.com/beercss/beercss/blob/main/docs/NAVIGATION.md')")
       i code
       span Code
@@ -36,7 +42,7 @@ div
       i code
       span Code
 
-  header#top-app-bar1.responsive.fixed.yellow4.black-text
+  header#top-app-bar1.fixed.responsive.max.yellow4.black-text
     nav
       .max
         a.s(@click="domain.addHomeScreen()")
@@ -53,7 +59,8 @@ div
         i.page.top.active(v-if="data.isDark") light_mode
         i.page.top.active(v-else) dark_mode
 
-  dialog#dialog-menu.left
+  .overlay
+  dialog#dialog-menu.left.scroll
     header.fixed
       nav
         img.circle(:src="'/favicon.png'")
@@ -61,127 +68,132 @@ div
           h6 Beer CSS
         button.transparent.circle(data-ui="#dialog-menu")
           i close
-    a.row.round(data-ui="#themes3")
-      i palette
-      span Themes
-    a.row.round(data-ui="#more3")
-      i collections
-      span Templates
-    a.row.round(@click="sharedDomain.updateMode(data)")
-      i {{ data.isDark ? "light_mode" : "dark_mode" }}
-      span Light / Dark
-    .small-divider
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#app-bars')")
-      i widgets
-      span App bars
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#badges')")
-      i widgets
-      span Badges
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#buttons')")
-      i widgets
-      span Buttons
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#cards')")
-      i widgets
-      span Cards
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#checkboxes')")
-      i widgets
-      span Checkboxes
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#chips')")
-      i widgets
-      span Chips
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#colors')")
-      i widgets
-      span Colors
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#containers')")
-      i widgets
-      span Containers
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#dialogs')")
-      i widgets
-      span Dialogs
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#directions')")
-      i widgets
-      span Directions
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#dividers')")
-      i widgets
-      span Dividers
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#expansions')")
-      i widgets
-      span Expansions
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#grids')")
-      i widgets
-      span Grids
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#icons')")
-      i widgets
-      span Icons
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#inputs')")
-      i widgets
-      span Inputs
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#layouts')")
-      i widgets
-      span Layouts
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#media')")
-      i widgets
-      span Media
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#menus')")
-      i widgets
-      span Menus
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#navigations')")
-      i widgets
-      span Navigations
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#pages')")
-      i widgets
-      span Pages
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#progress')")
-      i widgets
-      span Progress
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#radios')")
-      i widgets
-      span Radios
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#responsive')")
-      i widgets
-      span Responsive
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#scrolls')")
-      i widgets
-      span Scrolls
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#search')")
-      i widgets
-      span Search
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#selects')")
-      i widgets
-      span Selects
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#sliders')")
-      i widgets
-      span Sliders
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#snackbars')")
-      i widgets
-      span Snackbars
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#spaces')")
-      i widgets
-      span Spaces
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#steppers')")
-      i widgets
-      span Steppers
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#switches')")
-      i widgets
-      span Switches
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#tables')")
-      i widgets
-      span Tables
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#tabs')")
-      i widgets
-      span Tabs
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#textareas')")
-      i widgets
-      span Textareas
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#tooltips')")
-      i widgets
-      span Tooltips
-    a.row.round(data-ui="#dialog-menu", @click="domain.goTo('#typography')")
-      i widgets
-      span Typography
+    nav.drawer.no-padding.no-margin
+      a(data-ui="#themes3")
+        i palette
+        span Themes
+      a(data-ui="#more3")
+        i collections
+        span Templates
+      a(@click="sharedDomain.updateMode(data)")
+        i {{ data.isDark ? "light_mode" : "dark_mode" }}
+        span Light / Dark
+      .small-divider
+      a(data-ui="#dialog-menu", @click="domain.goTo('#app-bars')")
+        i widgets
+        span App bars
+      a(data-ui="#dialog-menu", @click="domain.goTo('#badges')")
+        i widgets
+        span Badges
+      a(data-ui="#dialog-menu", @click="domain.goTo('#buttons')")
+        i widgets
+        span Buttons
+      a(data-ui="#dialog-menu", @click="domain.goTo('#cards')")
+        i widgets
+        span Cards
+      a(data-ui="#dialog-menu", @click="domain.goTo('#checkboxes')")
+        i widgets
+        span Checkboxes
+      a(data-ui="#dialog-menu", @click="domain.goTo('#chips')")
+        i widgets
+        span Chips
+      a(data-ui="#dialog-menu", @click="domain.goTo('#colors')")
+        i widgets
+        span Colors
+      a(data-ui="#dialog-menu", @click="domain.goTo('#containers')")
+        i widgets
+        span Containers
+      a(data-ui="#dialog-menu", @click="domain.goTo('#dialogs')")
+        i widgets
+        span Dialogs
+      a(data-ui="#dialog-menu", @click="domain.goTo('#directions')")
+        i widgets
+        span Directions
+      a(data-ui="#dialog-menu", @click="domain.goTo('#dividers')")
+        i widgets
+        span Dividers
+      a(data-ui="#dialog-menu", @click="domain.goTo('#expansions')")
+        i widgets
+        span Expansions
+      a(data-ui="#dialog-menu", @click="domain.goTo('#grids')")
+        i widgets
+        span Grids
+      a(data-ui="#dialog-menu", @click="domain.goTo('#icons')")
+        i widgets
+        span Icons
+      a(data-ui="#dialog-menu", @click="domain.goTo('#inputs')")
+        i widgets
+        span Inputs
+      a(data-ui="#dialog-menu", @click="domain.goTo('#layouts')")
+        i widgets
+        span Layouts
+      a(data-ui="#dialog-menu", @click="domain.goTo('#lists')")
+        i widgets
+        span Lists
+      a(data-ui="#dialog-menu", @click="domain.goTo('#media')")
+        i widgets
+        span Media
+      a(data-ui="#dialog-menu", @click="domain.goTo('#menus')")
+        i widgets
+        span Menus
+      a(data-ui="#dialog-menu", @click="domain.goTo('#navigations')")
+        i widgets
+        span Navigations
+      a(data-ui="#dialog-menu", @click="domain.goTo('#pages')")
+        i widgets
+        span Pages
+      a(data-ui="#dialog-menu", @click="domain.goTo('#progress')")
+        i widgets
+        span Progress
+      a(data-ui="#dialog-menu", @click="domain.goTo('#radios')")
+        i widgets
+        span Radios
+      a(data-ui="#dialog-menu", @click="domain.goTo('#responsive')")
+        i widgets
+        span Responsive
+      a(data-ui="#dialog-menu", @click="domain.goTo('#scrolls')")
+        i widgets
+        span Scrolls
+      a(data-ui="#dialog-menu", @click="domain.goTo('#search')")
+        i widgets
+        span Search
+      a(data-ui="#dialog-menu", @click="domain.goTo('#selects')")
+        i widgets
+        span Selects
+      a(data-ui="#dialog-menu", @click="domain.goTo('#sliders')")
+        i widgets
+        span Sliders
+      a(data-ui="#dialog-menu", @click="domain.goTo('#snackbars')")
+        i widgets
+        span Snackbars
+      a(data-ui="#dialog-menu", @click="domain.goTo('#spaces')")
+        i widgets
+        span Spaces
+      a(data-ui="#dialog-menu", @click="domain.goTo('#steppers')")
+        i widgets
+        span Steppers
+      a(data-ui="#dialog-menu", @click="domain.goTo('#switches')")
+        i widgets
+        span Switches
+      a(data-ui="#dialog-menu", @click="domain.goTo('#tables')")
+        i widgets
+        span Tables
+      a(data-ui="#dialog-menu", @click="domain.goTo('#tabs')")
+        i widgets
+        span Tabs
+      a(data-ui="#dialog-menu", @click="domain.goTo('#textareas')")
+        i widgets
+        span Textareas
+      a(data-ui="#dialog-menu", @click="domain.goTo('#tooltips')")
+        i widgets
+        span Tooltips
+      a(data-ui="#dialog-menu", @click="domain.goTo('#typography')")
+        i widgets
+        span Typography
 
   themes(id="themes3", v-model="data", position="right")
 
+  .overlay
   dialog#more3.right.small(data-ui="#more3")
     header.fixed
       nav
@@ -189,31 +201,37 @@ div
         button.transparent.circle
           i close
     p All templates listed below are only for tests purpose. Feel free to study them.
-    .space
-    a.row.round(href="/gmail")
-      i mail
-      span Gmail
-    a.row.round(href="/netflix")
-      i tv
-      span Netflix
-    a.row.round(href="/uber")
-      i directions_car
-      span Uber
-    a.row.round(href="/youtube")
-      i smart_display
-      span Youtube
-    a.row.round(href="/material-design-3")
-      i
-        svg(viewBox="0 0 24 24")
-          path(d="M21,12C21,9.97 20.33,8.09 19,6.38V17.63C20.33,15.97 21,14.09 21,12M17.63,19H6.38C7.06,19.55 7.95,20 9.05,20.41C10.14,20.8 11.13,21 12,21C12.88,21 13.86,20.8 14.95,20.41C16.05,20 16.94,19.55 17.63,19M11,17L7,9V17H11M17,9L13,17H17V9M12,14.53L15.75,7H8.25L12,14.53M17.63,5C15.97,3.67 14.09,3 12,3C9.91,3 8.03,3.67 6.38,5H17.63M5,17.63V6.38C3.67,8.09 3,9.97 3,12C3,14.09 3.67,15.97 5,17.63M23,12C23,15.03 21.94,17.63 19.78,19.78C17.63,21.94 15.03,23 12,23C8.97,23 6.38,21.94 4.22,19.78C2.06,17.63 1,15.03 1,12C1,8.97 2.06,6.38 4.22,4.22C6.38,2.06 8.97,1 12,1C15.03,1 17.63,2.06 19.78,4.22C21.94,6.38 23,8.97 23,12Z")
-      span Material.io
-    a.row.round(href="/dynamic-colors")
-      i format_paint
-      span Material Dynamic Colors
-    .small-divider
-    a.row.round(href="https://codepen.io/search/pens?q=beercss")
-      i code
-      span Codepen
+    nav.drawer.max.no-padding
+      a(href="/gmail")
+        i mail
+        span Gmail
+      a(href="/material-design-3")
+        i
+          svg(viewBox="0 0 24 24")
+            path(d="M21,12C21,9.97 20.33,8.09 19,6.38V17.63C20.33,15.97 21,14.09 21,12M17.63,19H6.38C7.06,19.55 7.95,20 9.05,20.41C10.14,20.8 11.13,21 12,21C12.88,21 13.86,20.8 14.95,20.41C16.05,20 16.94,19.55 17.63,19M11,17L7,9V17H11M17,9L13,17H17V9M12,14.53L15.75,7H8.25L12,14.53M17.63,5C15.97,3.67 14.09,3 12,3C9.91,3 8.03,3.67 6.38,5H17.63M5,17.63V6.38C3.67,8.09 3,9.97 3,12C3,14.09 3.67,15.97 5,17.63M23,12C23,15.03 21.94,17.63 19.78,19.78C17.63,21.94 15.03,23 12,23C8.97,23 6.38,21.94 4.22,19.78C2.06,17.63 1,15.03 1,12C1,8.97 2.06,6.38 4.22,4.22C6.38,2.06 8.97,1 12,1C15.03,1 17.63,2.06 19.78,4.22C21.94,6.38 23,8.97 23,12Z")
+        span Material.io
+      a(href="/dynamic-colors")
+        i format_paint
+        span Material Dynamic Colors
+      a(href="/music-player")
+        i play_arrow
+        span Music Player
+      a(href="/netflix")
+        i tv
+        span Netflix
+      a(href="/reddit")
+        i open_in_new
+        span Reddit
+      a(href="/uber")
+        i directions_car
+        span Uber
+      a(href="/youtube")
+        i smart_display
+        span Youtube
+      .small-divider
+      a(href="https://codepen.io/search/pens?q=beercss" target="_blank")
+        i code
+        span Codepen
 
   .responsive.center-align.yellow4
     div.black-text
@@ -238,7 +256,7 @@ div
       .center-align
         img(src="https://img.shields.io/github/license/beercss/beercss" alt="License")
         span &nbsp;
-        img(src="https://img.badgesize.io/beercss/beercss/main/dist/cdn/beer.min.css?compression=brotli" alt="Size")
+        img(src="https://img.shields.io/bundlephobia/minzip/beercss", alt="minzipped size")
         span &nbsp;
         img(src="https://img.shields.io/npm/v/beercss" alt="Version")
       .large-space
@@ -249,21 +267,33 @@ div
   main.responsive
     .large-space
     #begin
+      .small-height
+      .small-height
+      h1 We are working to translate a modern UI into HTML semantic standard
+      h3 
+        a.link(href="https://github.com/beercss/beercss") Don't forget to star us on Github
+      .small-height
+      .small-height
+      projectsByCommunity
+      .small-height
+      .small-height
       .grid
         #intro.s12
           .div
             h3 Get started
             .medium-space
             h5 From CDN
-            pre.scroll.large-padding.fill(style="font-family: courier new")
-              | &lt;link href="https://cdn.jsdelivr.net/npm/beercss@3.4.2/dist/cdn/beer.min.css" rel="stylesheet"&gt;
+            .space
+            pre.scroll.large-padding.fill
+              | &lt;link href="https://cdn.jsdelivr.net/npm/beercss@3.6.5/dist/cdn/beer.min.css" rel="stylesheet"&gt;
               |
-              | &lt;script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.4.2/dist/cdn/beer.min.js"&gt;&lt;/script&gt;
+              | &lt;script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.6.5/dist/cdn/beer.min.js"&gt;&lt;/script&gt;
               |
-              | &lt;script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.0/dist/cdn/material-dynamic-colors.min.js"&gt;&lt;/script&gt;
+              | &lt;script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.2/dist/cdn/material-dynamic-colors.min.js"&gt;&lt;/script&gt;
             .medium-space
             h5 From NPM
-            pre.scroll.large-padding.fill(style="font-family: courier new")
+            .space
+            pre.scroll.large-padding.fill
               | // installing
               | npm i beercss
               | npm i material-dynamic-colors
@@ -276,93 +306,99 @@ div
             .medium-space
             .l
               h5 Summary
+              .space
               pre.wrap.large-padding.fill
                 p
-                  b absolute
+                  b.error-text absolute
                   span &nbsp;left, right, top, bottom, front, back, small, medium, large
                 p
-                  b &lt;article&gt;
+                  b.error-text &lt;article&gt;
                   span &nbsp;small, medium, large, border, round, no-round, left-round, top-round, right-round, bottom-round, padding, no-padding, tiny-padding small-padding, medium-padding, large-padding
                 p
-                  b badge
-                  span &nbsp;left, right, top, bottom, border, circle, square, round, no-round, left-round, right-round, top-round, bottom-round
+                  b.error-text badge
+                  span &nbsp;min, left, right, top, bottom, none, border, circle, square, round, no-round, left-round, right-round, top-round, bottom-round
                 p
-                  b button or &lt;button&gt;
-                  span &nbsp;small, medium, large, extra, none, extend, border, circle, square, round, no-round, left-round, right-round, top-round, bottom-round, responsive, horizontal, vertical
+                  b.error-text button or &lt;button&gt;
+                  span &nbsp;small, medium, large, extra, extend, border, circle, square, round, no-round, left-round, right-round, top-round, bottom-round, responsive, horizontal, vertical
                 p
-                  b chip
+                  b.error-text chip
                   span &nbsp;small, medium, large, border, no-border, circle, square, round, no-round, left-round, right-round, top-round, bottom-round, horizontal, vertical
                 p
-                  b &lt;details&gt;
+                  b.error-text &lt;details&gt;
                 p
-                  b &lt;dialog&gt;
+                  b.error-text &lt;dialog&gt;
                   span &nbsp;left, right, top, bottom, small, medium, large, modal, border, round, no-round, left-round, right-round, top-round, bottom-round, active
                 p
-                  b field
+                  b.error-text field
                   span &nbsp;small, medium, large, extra, label, border, round, fill, prefix, suffix, textarea
                 p
-                  b fixed
+                  b.error-text fixed
                   span &nbsp;left, right, top, bottom, front, back, small, medium, large
                 p
-                  b &lt;footer&gt;
+                  b.error-text &lt;footer&gt;
                   span &nbsp;fixed, responsive
                 p
-                  b &lt;h1&gt;...&lt;h6&gt;
+                  b.error-text &lt;h1&gt;...&lt;h6&gt;
                   span &nbsp;small, medium, large
                 p
-                  b &lt;header&gt;
+                  b.error-text &lt;header&gt;
                   span &nbsp;fixed, responsive
                 p
-                  b &lt;i&gt;
+                  b.error-text &lt;i&gt;
                   span &nbsp;tiny, small, medium, large, extra, fill
                 p
-                  b &lt;img&gt;
+                  b.error-text &lt;img&gt;
                   span &nbsp;tiny, small, medium, large, extra, circle, round, no-round, left-round, right-round, top-round, bottom-round, responsive
                 p
-                  b &lt;label&gt;
+                  b.error-text &lt;label&gt;
                   span &nbsp;active, radio, checkbox, switch
                 p
-                  b &lt;main&gt;
+                  b.error-text &lt;li&gt;
+                  span &nbsp;max, divider, small-divider, medium-divider, large-divider
+                p
+                  b.error-text &lt;main&gt;
                   span &nbsp;responsive, max
                 p
-                  b &lt;menu&gt;
+                  b.error-text &lt;menu&gt;
                   span &nbsp;left, right, wrap, no-wrap, active, min, max
                 p
-                  b &lt;nav&gt;
-                  span &nbsp;left, right, top, bottom, left-align, right-align, center-align, top-align, bottom-align, middle-align, border, round, no-round, left-round, right-round, top-round, bottom-round, no-space, small-space, medium-space, large-space, wrap, no-wrap, margin, no-margin, tiny-margin, small-margin, medium-margin, large-margin
+                  b.error-text &lt;nav&gt;
+                  span &nbsp;left, right, top, bottom, drawer, min, max, left-align, right-align, center-align, top-align, bottom-align, middle-align, border, round, no-round, left-round, right-round, top-round, bottom-round, no-space, small-space, medium-space, large-space, wrap, no-wrap, margin, no-margin, tiny-margin, small-margin, medium-margin, large-margin
                 p
-                  b overlay
-                  span &nbsp;left-align, right-align, center-align, top-align, bottom-align, middle-align, active
+                  b.error-text overlay
+                  span &nbsp;left-align, right-align, center-align, top-align, bottom-align, middle-align, active, blur, small-blur, medium-blur, large-blur
                 p
-                  b page
+                  b.error-text page
                   span &nbsp;left, right, top, bottom, active
                 p
-                  b &lt;progress&gt;
-                  span &nbsp;small, medium, large, circle
+                  b.error-text &lt;progress&gt;
+                  span &nbsp;small, medium, large, circle, max, vertical
                 p
-                  b row
-                  span &nbsp;left-align, right-align, center-align, top-align, bottom-align, middle-align
+                  b.error-text row, &lt;ul&gt; or &lt;ol&gt;
+                  span &nbsp;left-align, right-align, center-align, top-align, bottom-align, middle-align, no-space, small-space, medium-space, large-space, horizontal, vertical
                 p
-                  b snackbar
+                  b.error-text snackbar
                   span &nbsp;top, bottom, active
                 p
-                  b &lt;summary&gt;
+                  b.error-text &lt;summary&gt;
                 p
-                  b &lt;table&gt;
-                  span &nbsp;left-align, right-align, center-align, no-space, space, small-space, medium-space, large-space, border
+                  b.error-text &lt;table&gt;
+                  span &nbsp;left-align, right-align, center-align, no-space, space, small-space, medium-space, large-space, border, stripes, min, fixed
                 p
-                  b tabs
+                  b.error-text tabs
                   span &nbsp;left-align, right-align, center-align, horizontal, vertical, min, max
                 p
-                  b tooltip
+                  b.error-text tooltip
                   span &nbsp;left, right, top, bottom, max
                 p
-                  b &lt;video&gt;
+                  b.error-text &lt;video&gt;
                   span &nbsp;tiny, small, medium, large, extra, circle, round, no-round, left-round, right-round, top-round, bottom-round, responsive
-              .medium-space
+            .large-space
+            mainLayouts
+            .medium-space
             nav.wrap
-              a.button.small-round(href="https://github.com/beercss/beercss/blob/main/docs/INDEX.md") Documentation
-              a.button.small-round(href="https://codepen.io/collection/XydYMB") Codepen
+              a.button.small-round(href="https://codepen.io/leo-bnu/pen/yLKLPxj" target="_blank") Main layout on Codepen
+              a.button.small-round(href="https://codepen.io/collection/XydYMB" target="_blank") All Codepen
           .medium-space
           .large-divider
         .s12
@@ -397,6 +433,8 @@ div
           inputs
         .s12
           layouts
+        .s12
+          lists
         .s12
           media
         .s12
@@ -442,17 +480,18 @@ div
       div Made with love and beer, cheers 💛🍻
       .space
 
+      .overlay
       dialog#dialog-samples.right.large
         header.fixed.front
           nav
-            h5.truncate {{data.name}}
+            .max.truncate
+              h5 {{ data.name }}
             a.m.l.button.small-round.border(v-show="data.urlSample", :href="data.urlSample", target="_blank") Documentation
-            .max
             a.button.circle.transparent.s(v-show="data.urlSample", :href="data.urlSample", target="_blank")
               i description
             button.circle.transparent(data-ui="#dialog-samples")
               i close
-        article.large-padding.border(v-for="(exemplo in data.samples")
+        article.large-padding.border(v-for="exemplo in data.samples")
           div(v-html="exemplo.html")
           .space(v-show="exemplo.html")
           pre.scroll.large-padding.fill(v-html="exemplo.sourceCode")
@@ -464,6 +503,7 @@ import themes from "../shared/themes.vue";
 import data from "./data";
 import domain from "./domain";
 import sharedDomain from "../shared/domain";
+import projectsByCommunity from "./projectsByCommunity.vue";
 import appBars from "./appBars.vue";
 import badges from "./badges.vue";
 import buttons from "./buttons.vue";
@@ -480,6 +520,8 @@ import grids from "./grids.vue";
 import icons from "./icons.vue";
 import inputs from "./inputs.vue";
 import layouts from "./layouts.vue";
+import lists from "./lists.vue";
+import mainLayouts from "./mainLayouts.vue";
 import media from "./media.vue";
 import dialogs from "./dialogs.vue";
 import navigations from "./navigations.vue";

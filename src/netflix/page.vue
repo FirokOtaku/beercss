@@ -51,6 +51,7 @@
     button.circle.large.transparent(@click="redirect('/')")
       img.responsive(:src="'/favicon.png'")
   main
+    .overlay
     dialog#dialog-search.top.transparent
       .row
         .max.l
@@ -66,8 +67,6 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import data from "./data";
-import sharedDomain from "../shared/domain";
 import home from "./home.vue";
 import { redirect } from "../shared/router";
 

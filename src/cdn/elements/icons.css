@@ -59,12 +59,11 @@ i > :is(img, svg) {
   background-size: 100%;
   border-radius: inherit;
   position: absolute;
-  inset-block-start: 0;
-  inset-inline-start: 0;
+  inset: 0 auto auto 0;
   padding: inherit;
 }
 
-i[class*="fa-"] {
+i[class*=fa-] {
   font-size: calc(var(---size) * 0.85);
   line-height: normal;
   block-size: auto;

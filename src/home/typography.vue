@@ -7,7 +7,7 @@
     span Display and headline
     a.chip.circle(@click="domain.showSamples(data, '#display-headline h1, #display-headline h2, #display-headline h3, #display-headline h4, #display-headline h5, #display-headline h6', 'Display and headline', null, 'https://github.com/beercss/beercss/blob/main/docs/TYPOGRAPHY.md')")
       i code
-  div
+  nav.wrap
     label.radio
       input(type="radio", name="size-typography", @click="domain.updateSize('#display-headline *', 'small')")
       span small
@@ -22,19 +22,20 @@
     label.radio
       input(type="radio", name="size-typography", @click="domain.updateSize('#display-headline *', 'large')")
       span large
-    .space
-    #display-headline.wrap
-      h1 Display
-      h2 Display
-      h3 Display
-      h4 Headline
-      h5 Headline
-      h6 Headline
+  .space
+  #display-headline.wrap
+    h1 Display
+    h2 Display
+    h3 Display
+    h4 Headline
+    h5 Headline
+    h6 Headline
   .medium-space
   h6.middle-align
     span Formatting
-    a.chip.circle(@click="domain.showSamples(data, '#formatting nav *', 'Formatting', null, 'https://github.com/beercss/beercss/blob/main/docs/BUTTON.md')")
+    a.chip.circle(@click="domain.showSamples(data, '#formatting nav *', 'Formatting', null, 'https://github.com/beercss/beercss/blob/main/docs/TYPOGRAPHY.md#formatting-example')")
       i code
+  .space
   #formatting
     nav.wrap
       a.link link
@@ -52,22 +53,17 @@
   .medium-space
   h6.middle-align
     span Line spacing
-    a.chip.circle(@click="domain.showSamples(data, '#spacing > :not(.bold, .small-divider, .space)', 'Line spacing', null, 'https://github.com/beercss/beercss/blob/main/docs/BUTTON.md')")
+    a.chip.circle(@click="domain.showSamples(data, '#spacing > :not(.bold, .small-divider, .space)', 'Line spacing', null, 'https://github.com/beercss/beercss/blob/main/docs/TYPOGRAPHY.md#line-spacing-example')")
       i code
-  div
+  nav.wrap
     label.radio
       input( type="radio", name="line-typography", @click="domain.updateLine('#spacing > *', 'no-line')")
       span no-line
     label.radio
-      input(
-        type="radio",
-        name="line-typography",
-        checked,
-        @click="domain.updateLine('#spacing > *')"
-      )
+      input(type="radio", name="line-typography", @click="domain.updateLine('#spacing > *', 'tiny-line')")
       span tiny-line
     label.radio
-      input(type="radio", name="line-typography", @click="domain.updateLine('#spacing > *', 'small-line')")
+      input(type="radio", name="line-typography", checked, @click="domain.updateLine('#spacing > *')")
       span small-line
     label.radio
       input(type="radio", name="line-typography", @click="domain.updateLine('#spacing > *', 'medium-line')")

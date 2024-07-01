@@ -1,88 +1,160 @@
 main.responsive {
-  margin: 0 auto;
-  max-inline-size: 75rem;
+  flex: 1;
   padding: 0.5rem;
   overflow-x: hidden;
-  min-block-size: 100vh;
 }
 
-main.responsive.max {
+:is(main, header, footer, section).responsive {
+  max-inline-size: 75rem;
+  margin: 0 auto;
+}
+
+:is(main, header, footer, section).responsive.max {
   max-inline-size: 100%;
 }
 
-nav.bottom:not(.s, .m, .l) ~ .responsive:not(header) {
+*:has(> main.responsive) {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+}
+
+*:has(> nav.bottom:not(.s, .m, .l)) {
   padding-block-end: 5rem;
 }
 
-nav.top:not(.s, .m, .l) ~ .responsive:not(footer) {
+*:has(> nav.top:not(.s, .m, .l)) {
   padding-block-start: 5rem;
 }
 
-nav.left:not(.s, .m, .l) ~ .responsive {
-  padding-inline-start: 6rem;
+*:has(> nav.left:not(.s, .m, .l)) {
+  padding-inline-start: 5rem;
 }
 
-nav.right:not(.s, .m, .l) ~ .responsive {
-  padding-inline-end: 6rem;
+*:has(> nav.right:not(.s, .m, .l)) {
+  padding-inline-end: 5rem;
+}
+
+*:has(> nav.drawer.left:not(.s, .m, .l)) {
+  padding-inline-start: 20rem;
+}
+
+*:has(> nav.drawer.right:not(.s, .m, .l)) {
+  padding-inline-end: 20rem;
+}
+
+nav.top:not(.s, .m, .l) ~ header.fixed {
+  inset-block-start: 5rem;
+}
+
+nav.bottom:not(.s, .m, .l) ~ footer.fixed {
+  inset-block-end: 5rem;
 }
 
 @media only screen and (max-width: 600px) {
-  nav.s.bottom ~ .responsive:not(header) {
+  *:has(> nav.s.bottom) {
     padding-block-end: 5rem;
   }
 
-  nav.s.top ~ .responsive:not(footer) {
+  *:has(> nav.s.top) {
     padding-block-start: 5rem;
   }
 
-  nav.s.left ~ .responsive {
-    padding-inline-start: 6rem;
+  *:has(> nav.s.left) {
+    padding-inline-start: 5rem;
   }
 
-  nav.s.right ~ .responsive {
-    padding-inline-end: 6rem;
+  *:has(> nav.s.right) {
+    padding-inline-end: 5rem;
+  }
+
+  *:has(> nav.s.drawer.left) {
+    padding-inline-start: 20rem;
+  }
+
+  *:has(> nav.s.drawer.right) {
+    padding-inline-end: 20rem;
+  }
+
+  nav.s.top ~ header.fixed {
+    inset-block-start: 5rem;
+  }
+
+  nav.s.bottom ~ footer.fixed {
+    inset-block-end: 5rem;
   }
 }
 
 @media only screen and (min-width: 601px) and (max-width: 992px) {
-  nav.m.bottom ~ .responsive:not(header) {
+  *:has(> nav.m.bottom) {
     padding-block-end: 5rem;
   }
 
-  nav.m.top ~ .responsive:not(footer) {
+  *:has(> nav.m.top) {
     padding-block-start: 5rem;
   }
 
-  nav.m.left ~ .responsive {
-    padding-inline-start: 6rem;
+  *:has(> nav.m.left) {
+    padding-inline-start: 5rem;
   }
 
-  nav.m.right ~ .responsive {
-    padding-inline-end: 6rem;
+  *:has(> nav.m.right) {
+    padding-inline-end: 5rem;
+  }
+
+  *:has(> nav.m.drawer.left) {
+    padding-inline-start: 20rem;
+  }
+
+  *:has(> nav.m.drawer.right) {
+    padding-inline-end: 20rem;
+  }
+
+  nav.m.top ~ header.fixed {
+    inset-block-start: 5rem;
+  }
+
+  nav.m.bottom ~ footer.fixed {
+    inset-block-end: 5rem;
   }
 }
 
 @media only screen and (min-width: 993px) {
-  nav.l.bottom ~ .responsive:not(header) {
+  *:has(> nav.l.bottom) {
     padding-block-end: 5rem;
   }
 
-  nav.l.top ~ .responsive:not(footer) {
+  *:has(> nav.l.top) {
     padding-block-start: 5rem;
   }
 
-  nav.l.left ~ .responsive {
-    padding-inline-start: 6rem;
+  *:has(> nav.l.left) {
+    padding-inline-start: 5rem;
   }
 
-  nav.l.right ~ .responsive {
-    padding-inline-end: 6rem;
+  *:has(> nav.l.right) {
+    padding-inline-end: 5rem;
+  }
+
+  *:has(> nav.l.drawer.left) {
+    padding-inline-start: 20rem;
+  }
+
+  *:has(> nav.l.drawer.right) {
+    padding-inline-end: 20rem;
+  }
+
+  nav.l.top ~ header.fixed {
+    inset-block-start: 5rem;
+  }
+
+  nav.l.bottom ~ footer.fixed {
+    inset-block-end: 5rem;
   }
 }
 
 @media only screen and (max-width: 600px) {
   main.responsive {
-    padding-inline-end: 0.5rem;
-    padding-inline-start: 0.5rem;
+    padding-inline: 0.5rem;
   }
 }

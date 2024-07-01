@@ -26,7 +26,7 @@
       input(type="radio", name="size-sliders1", @click="domain.updateSize('#sliders1 .slider', 'large')")
       span large
     label.radio
-      input(type="radio", name="direction-sliders1", @click="domain.updateDirection('#sliders1 .slider', '')", checked)
+      input(type="radio", name="direction-sliders1", checked, @click="domain.updateDirection('#sliders1 .slider', '')")
       span horizontal
     label.radio
       input(type="radio", name="direction-sliders1", @click="domain.updateDirection('#sliders1 .slider', 'vertical')")
@@ -118,15 +118,15 @@
       input(type="radio", name="size-sliders4", @click="domain.updateSize('#sliders4 .slider', 'large')")
       span large
     label.radio
-      input(type="radio", name="direction-sliders4", @click="domain.updateDirection('#sliders4 .slider, #sliders4 nav', ''); updateHorizontalSlider(true);", checked)
+      input(type="radio", name="direction-sliders4", checked, @click="domain.updateDirection('#sliders4 .slider, #sliders4 nav', ''); domain.updateAlign('#sliders4 nav', ''); updateHorizontalSlider(true);")
       span horizontal
     label.radio
-      input(type="radio", name="direction-sliders4", @click="domain.updateDirection('#sliders4 .slider, #sliders4 nav', 'vertical'); updateHorizontalSlider(false);")
+      input(type="radio", name="direction-sliders4", @click="domain.updateDirection('#sliders4 .slider, #sliders4 nav', 'vertical'); domain.updateAlign('#sliders4 nav', 'center-align'); updateHorizontalSlider(false);")
       span vertical
   .medium-space
   .grid.large-space#sliders4
     .s12.m6.l4.center-align
-      nav
+      nav.no-space
         i(v-if="data.isHorizontalSlider") remove
         i(v-else) add
         label.slider
@@ -135,7 +135,7 @@
         i(v-if="data.isHorizontalSlider") add
         i(v-else) remove
     .s12.m6.l4.center-align
-      nav
+      nav.no-space
         i(v-if="data.isHorizontalSlider") volume_down
         i(v-else) volume_up
         label.slider
@@ -144,7 +144,7 @@
         i(v-if="data.isHorizontalSlider") volume_up
         i(v-else) volume_down
     .s12.m6.l4.center-align
-      nav
+      nav.no-space
         i(v-if="data.isHorizontalSlider") sunny
         i(v-else) rainy
         label.slider
@@ -179,6 +179,31 @@
           span
         span.helper Helper
         i rainy
+  .large-space
+  #sliders5
+    h6 Custom slider
+      a.chip.circle(@click="domain.showSamples(data, '#sliders5 nav > :not(label)', 'Custom', null, 'https://github.com/beercss/beercss/blob/main/docs/SLIDER.md')")
+        i code
+    nav.wrap
+      label.radio
+        input(type="radio", name="color-sliders5", checked, @click="domain.updateTextColor('#sliders5 .slider', '')")
+        span primary
+      label.radio
+        input(type="radio", name="color-sliders5", @click="domain.updateTextColor('#sliders5 .slider', 'orange-text')")
+        span orange-text
+      label.radio
+        input(type="radio", name="color-sliders5", @click="domain.updateTextColor('#sliders5 .slider', 'green-text')")
+        span green-text
+    .medium-space
+    nav.top-align.wrap
+      article.small-width.small-height.round
+        label.slider.max
+          input(type="range", value="30", max="100")
+          span
+      article.small-width.small-height.round
+        label.slider.max.vertical
+          input(type="range", value="30", max="100")
+          span
 </template>
 
 <script setup lang="ts">

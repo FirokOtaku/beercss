@@ -1,5 +1,5 @@
 .chip {
-  box-sizing: content-box;
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -14,10 +14,14 @@
   margin: 0 0.5rem;
   text-transform: none;
   border-radius: 0.5rem;
-  transition: var(--speed3) transform, var(--speed3) border-radius, var(--speed3) padding;
+  transition: transform var(--speed3), border-radius var(--speed3), padding var(--speed3);
   user-select: none;
   gap: 1rem;
   line-height: normal;
+}
+
+.chip.fill:hover {
+  box-shadow: var(--elevate1);
 }
 
 .chip.medium {
@@ -32,11 +36,7 @@
 
 .chip.fill {
   background-color: var(--secondary-container) !important;
-  border-color: transparent;
-}
-
-.chip.border {
-  border-color: var(--outline);
+  border: none;
 }
 
 .chip.round.small {
